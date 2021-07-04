@@ -12,7 +12,7 @@ void delete1();
 void search();
 
 
-struct CustomerDetails   //STRUCTURE DECLARATION
+struct CustomerDetails   
 {
 	char roomnumber[10];
 	char name[20];
