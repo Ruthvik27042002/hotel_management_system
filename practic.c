@@ -7,7 +7,7 @@
 
 void add();  
 void list();
-void edit();  //GLOBALLY DECLARED FUNCTIONS N VARIABLE
+void edit();  
 void delete1();
 void search();
 
