@@ -11,21 +11,6 @@ void edit();  //GLOBALLY DECLARED FUNCTIONS N VARIABLE
 void delete1();
 void search();
 
-void setcolor(int ForgC)
-{ WORD wColor;
-HANDLE hStdOut=GetStdHandle(STD_OUTPUT_HANDLE);
-CONSOLE_SCREEN_BUFFER_INFO csbi;
-
-if(GetConsoleScreenBufferInfo(hStdOut,&csbi))
-{
-	wColor=(csbi.wAttributes & 0xB0)+(ForgC & 0x0B);
-//	SetConsoleTextAttributes(hStdOut,wColor);
-	SetConsoleTextAttribute(hStdOut,wColor);
-	
-}
-}
-
-
 
 struct CustomerDetails   //STRUCTURE DECLARATION
 {
@@ -48,7 +33,6 @@ int main(){     // MAIN FUNCTION
 	char choice;
 
 	system("cls");   // FOR CLEARING SCREEN
-	setcolor(15);
  	printf("\t\t*****************\n");
 	printf("\t\t*                                               *\n");
 	printf("\t\t*       -----------------------------           *\n");
@@ -73,7 +57,6 @@ int main(){     // MAIN FUNCTION
 	while (1)      // INFINITE LOOP
 	{
 		system("cls");
-		setcolor(10);
 		 for(i=0;i<80;i++)
 		printf("-");
 		printf("\n");
@@ -81,7 +64,6 @@ int main(){     // MAIN FUNCTION
 		for(i=0;i<80;i++)
 		printf("-");
 		printf("\n");
-		setcolor(10);
 		printf("\t\t Please enter your choice for menu:");
 		printf("\n\n");
 		printf(" \n Enter 1 -> Book a room");
