@@ -25,49 +25,7 @@ if(GetConsoleScreenBufferInfo(hStdOut,&csbi))
 }
 }
 
-void login()
-{
-	
-	int a=0,i=0;
-    char uname[10],c=' '; 
-    char pword[10],code[10];
-    char user[10]="user";
-    char pass[10]="pass";
-    do
-{
-	system("cls");
-	
-    printf("\n  *********  LOGIN FORM  *********  ");
-    printf(" \n                       ENTER USERNAME:-");
-	scanf("%s", &uname); 
-	printf(" \n                       ENTER PASSWORD:-");
-	while(i<10)
-	{
-	    pword[i]=getch();
-	    c=pword[i];
-	    if(c==13) break;
-	    else printf("*");
-	    i++;
-	}
-	pword[i]='\0';
-	//char code=pword;
-	i=0;
-	//scanf("%s",&pword); 
-	printf("  \n\n\n       WELCOME !!!! LOGIN IS SUCCESSFUL");
-	
-	break;
-	
-}
-	while(a<=2);
-	if (a>2)
-	{
-		printf("\nSorry you have entered the wrong username and password for four times!!!");
-		
-		getch();
-		
-		}
-		system("cls");	
-}
+
 
 struct CustomerDetails   //STRUCTURE DECLARATION
 {
@@ -91,26 +49,18 @@ int main(){     // MAIN FUNCTION
 
 	system("cls");   // FOR CLEARING SCREEN
 	setcolor(15);
-	printf(" -------------------------------------------------------------------------\n");
-	printf("|                                                                         |\n");      
-	printf("|                                                                         |\n");
-	printf("|  OOOOOO   OOOOOO OOOOOO OOOOOO OOOOOO OOOOOO O      O OOOOOOO  OOOOOO   |\n");
-	printf("|  O        O    O O      O        O      O    O O    O O        O        |\n");
-	printf("|  O  OOOOO OOOOOO OOOOO  OOOOO    O      O    O  O   O O  OOOOO OOOOOO   |\n");
-	printf("|  O    O   O  O   O      O        O      O    O   O  O O    O        O   |\n");
-	printf("|  OOOOOO   O   O  OOOOOO OOOOOO   O    OOOOOO O    O O OOOOOO   OOOOOO   |\n");
-	printf("|                                                                         |\n");                       
-	printf(" -------------------------------------------------------------------------\n");
  	printf("\t\t*****************\n");
 	printf("\t\t*                                               *\n");
 	printf("\t\t*       -----------------------------           *\n");
-	printf("\t\t*        WELCOME TO HOTEL DESERT CAVE           *\n");
+	printf("\t\t*       	WELCOME TO Taj Athulya          	*\n");
 	printf("\t\t*       -----------------------------           *\n");
 	printf("\t\t*                                               *\n");
 	printf("\t\t*                                               *\n");
-	printf("\t\t*                                               *\n");
-	printf("\t\t*    Brought To You By code-projects.org        *\n");
-	printf("\t\t*                 ESP,XYZ                       *\n");
+	printf("\t\t*        OUR ADRESS:-Taj Athulya , Four star    *\n");
+	printf("\t\t*        ADRESS:23-24, Taj East Gate Rd,        *\n");
+	printf("\t\t*        Taj Nagari Phase 1, Near Shilpgram,    *\n");
+	printf("\t\t*        Telipara,Tajganj, Agra,Uttar Pradesh   *\n");
+	printf("\t\t*        	282001, India						*\n");
 	printf("\t\t*     CONTACT US:18-87454575552,035455852       *\n");
 	printf("\t\t*****************\n\n\n");
 		for(i=0;i<80;i++)
@@ -119,11 +69,7 @@ int main(){     // MAIN FUNCTION
 	    for(i=0;i<80;i++)
 		printf("-");
 	printf(" \n Press any key to continue:");
-	
-	getch();	
-    system("cls");
-    login();
-    system("cls");
+	getch();
 	while (1)      // INFINITE LOOP
 	{
 		system("cls");
