@@ -221,8 +221,7 @@ void delete1()
 	if(i==1)
 	{       
 		printf("\n\n Records of Customer in this  Room number is not found!!");
-		//remove("E:/file.txt");
-	   //rename("E:/temp.txt","E:/file.txt");
+		
 		getch();
 		fclose(f);
 		fclose(t);
