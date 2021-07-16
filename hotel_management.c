@@ -5,6 +5,13 @@
 #include <stdlib.h>
 #include <time.h>
 
+void Date();
+void Booking();
+void Room_Info();
+void Restaurant();
+void Payment();
+void Record();
+
 void homepage()
 {
 	while (1)
@@ -21,15 +28,15 @@ void homepage()
 		printf("\n");
 		printf("\t\t Please enter your choice for menu:");
 		printf("\n\n");
-		printf(" \n Enter 1 -> Book a room");
+		printf(" \n Enter 1 -> Book a Room");
 		printf("\n------------------------");
 		printf(" \n Enter 2 -> External RoomServices");
 		printf("\n----------------------------------");
-		printf(" \n Enter 3 -> Delete room Record");
+		printf(" \n Enter 3 -> Restaurant Food Servicses");
 		printf("\n-----------------------------------");
-		printf(" \n Enter 4 -> Payment for selected Room");
+		printf(" \n Enter 4 -> Payment for Selected Room");
 		printf("\n-----------------------------------");
-		printf(" \n Enter 5 -> Edit Record");
+		printf(" \n Enter 5 -> View Record");
 		printf("\n-----------------------");
 		printf(" \n Enter 6 -> Exit");
 		printf("\n-----------------");
@@ -41,15 +48,15 @@ void homepage()
 		switch(choice)           // SWITCH STATEMENT
 		{	
 			case '1':
-				break;
+				Booking();break;
 			case '2':
-				break;
+				Room_Info();break;
 			case '3':
-				break;
+				Restaurant();break;
 			case '4':
-				break;
+				Payment();break;
 			case '5':
-				break;
+				Record();break;
 			case '6':
 				system("cls");
 				printf("\n\n\t **THANK YOU**");
@@ -65,6 +72,7 @@ void homepage()
 		}
 	}
 };
+
 struct CustomerDetails
 {
 	char roomnumber[10];
@@ -104,3 +112,27 @@ int main()
 	
 	return 0;
 }
+
+void Date() {
+
+};
+
+void Booking() {
+
+};
+
+void Room_Info() {
+
+};
+
+void Restaurant() {
+
+};
+
+void Payment() {
+
+};
+
+void Record() {
+
+};
