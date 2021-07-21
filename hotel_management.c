@@ -109,6 +109,7 @@ int main()
 	printf("\t\t*               282001, India                   *\n");
 	printf("\t\t*     CONTACT US:18-87454575552,035455852       *\n");
 	printf("\t\t*****************\n\n\n");
+	Date();
 	printf(" \n Press any key to continue: \n");
 	getch();
 	system("cls");
@@ -119,13 +120,13 @@ int main()
 }
 
 void Date() {
-	// time_t t;
-	// time(&t);
-	// for(int i=0;i<80;i++)
-	// printf("-");
-	//     printf("\nCurrent date and time : %s",ctime(&t));
-	//     for(int i=0;i<80;i++)
-	// printf("-");
+	time_t t;
+	time(&t);
+	for(int i=0;i<80;i++)
+	printf("-");
+	    printf("\nCurrent date and time : %s",ctime(&t));
+	    for(int i=0;i<80;i++)
+	printf("-");
 }
 
 void Booking() {
