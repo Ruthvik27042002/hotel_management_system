@@ -40,6 +40,7 @@ void homepage()
 		printf("\n");
 		for (i = 0; i < 80; i++)
 			printf("-");
+		printf("\n");
 		choice = getche();
 		choice = toupper(choice);
 		switch(choice)           // SWITCH STATEMENT WITH CHOICE
@@ -108,7 +109,7 @@ int main()
 	printf("\t\t*               282001, India                   *\n");
 	printf("\t\t*     CONTACT US:18-87454575552,035455852       *\n");
 	printf("\t\t*****************\n\n\n");
-	printf(" \n Press any key to continue:");
+	printf(" \n Press any key to continue: \n");
 	getch();
 	system("cls");
 	homepage();
@@ -142,7 +143,7 @@ void Booking() {
 	{
 		system("cls");
 		printf("\n Enter Customer Details:");
-		printf("\n**********");
+		printf("\n**********\n");
 		printf("Enter Name:\n");
 		scanf("%s",s.name);
 		printf("Enter Address:\n");
@@ -170,7 +171,37 @@ void Booking() {
 }
 
 void Room_Info() {
-	
+	char test;
+	while(1)
+	{
+	system("cls");
+	printf("\n\n\n\n\n");
+	printf("\t\t\t\t\t\t Room-Information \n\n");
+	printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
+	printf("\t\t\t\t ********************************************\n");
+	printf("\t\t\t\t  Suite-room       \t   2 \t   $400/day\n");
+	printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
+	printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
+	printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
+	printf("\t\t\t\t\t     Room-Facilities \n\n");
+	printf("\t\t\t\t\t Facilities    \t   Cost/day \n");
+	printf("\t\t\t\t\t*****************************\n");
+	printf("\t\t\t\t\t Swimming-pool \t   $10/day\n");
+	printf("\t\t\t\t\t pet           \t   $2/day\n");
+	printf("\t\t\t\t\t gym           \t   $2/day\n");
+	printf("\t\t\t\t\t hospitality   \t   $2/day\n");
+	printf("\t\t\t\t\t spa           \t   $8/day \n");
+	printf("\t\t\t\t\t indoor-games  \t   $2/day \n\n\n\n");
+	printf("\t\t\t\t\t   Restaurant-Information \n\n");
+	printf("\t\t\t\t\t Type          \t   Cost/day \n");
+	printf("\t\t\t\t\t*****************************\n");
+	printf("\t\t\t\t\t veg-food      \t   $10/day \n");
+	printf("\t\t\t\t\t nonveg-food   \t   $15/day\n\n");
+	printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
+	test=getche();
+	if(test==27)
+			break;	
+	}
 }
 
 void Restaurant() {
