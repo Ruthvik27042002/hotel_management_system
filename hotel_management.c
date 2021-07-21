@@ -28,17 +28,14 @@ void homepage()
 		printf("\n");
 		printf("\t\t Please enter your choice for menu:");
 		printf("\n\n");
-		printf(" \n Enter 1 -> Book a Room");
 		printf("\n------------------------");
-		printf(" \n Enter 2 -> External RoomServices");
+		printf(" \n Enter 1 -> Hotel Room_info");
 		printf("\n----------------------------------");
-		printf(" \n Enter 3 -> Restaurant Food Servicses");
+		printf(" \n Enter 2 -> Book a Room");
 		printf("\n-----------------------------------");
-		printf(" \n Enter 4 -> Payment for Selected Room");
-		printf("\n-----------------------------------");
-		printf(" \n Enter 5 -> View Record");
+		printf(" \n Enter 3 -> View your Booked Record");
 		printf("\n-----------------------");
-		printf(" \n Enter 6 -> Exit");
+		printf(" \n Enter 4 -> Exit");
 		printf("\n-----------------");
 		printf("\n");
 		for (i = 0; i < 80; i++)
@@ -48,20 +45,15 @@ void homepage()
 		switch(choice)           // SWITCH STATEMENT WITH CHOICE
 		{	
 			case '1':
-				Booking();break;
-			case '2':
 				Room_Info();break;
+			case '2':
+				Booking();break;
 			case '3':
-				Restaurant();break;
-			case '4':
-				Payment();break;
-			case '5':
 				Record();break;
-			case '6':
+			case '4':
 				system("cls");
 				printf("\n\n\t **THANK YOU**");
 				printf("\n\t FOR TRUSTING OUR SERVICE");
-			//	Sleep(2000);
 				exit(0);
 				break;
 			default:
@@ -71,7 +63,18 @@ void homepage()
 				getch();
 		}
 	}
+}
+
+struct Room_Service 
+{
+	char swimming_pool;
+	char pets;
+	char gym;
+	char hospitality;
+	char spa;
+	char indoor_games;
 };
+
 
 struct CustomerDetails
 {
@@ -83,6 +86,7 @@ struct CustomerDetails
 	char email[20];
 	char period[10];
 	char arrivaldate[10];
+	struct Room_Service R;
 } s;
 
 int main()
@@ -114,7 +118,13 @@ int main()
 }
 
 void Date() {
-
+	// time_t t;
+	// time(&t);
+	// for(int i=0;i<80;i++)
+	// printf("-");
+	//     printf("\nCurrent date and time : %s",ctime(&t));
+	//     for(int i=0;i<80;i++)
+	// printf("-");
 }
 
 void Booking() {
@@ -133,9 +143,6 @@ void Booking() {
 		system("cls");
 		printf("\n Enter Customer Details:");
 		printf("\n**********");
-		printf("\n Enter Room number:\n");
-		scanf("\n%s",s.roomnumber);
-		fflush(stdin);
 		printf("Enter Name:\n");
 		scanf("%s",s.name);
 		printf("Enter Address:\n");
@@ -163,7 +170,7 @@ void Booking() {
 }
 
 void Room_Info() {
-
+	
 }
 
 void Restaurant() {
