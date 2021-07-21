@@ -6,7 +6,7 @@
 #include <time.h>
 
 void Date();
-void Booking();
+void Booking(float *pay);
 void Room_Info();
 void Restaurant();
 void Payment();
@@ -14,6 +14,8 @@ void Record();
 
 void homepage()
 {
+	float *payment;
+	*payment = 0;
 	while (1)
 	{
 		int i = 0;
@@ -48,7 +50,7 @@ void homepage()
 			case '1':
 				Room_Info();break;
 			case '2':
-				Booking();break;
+				Booking(payment);break;
 			case '3':
 				Record();break;
 			case '4':
@@ -87,6 +89,7 @@ struct CustomerDetails
 	char email[20];
 	char period[10];
 	char arrivaldate[10];
+	int countofrooms;
 	struct Room_Service R;
 } s;
 
@@ -129,7 +132,7 @@ void Date() {
 	printf("-");
 }
 
-void Booking() {
+void Booking(int *pay) {
     FILE *f;
 	char test;
 	f=fopen("add.txt","a+");
@@ -157,8 +160,11 @@ void Booking() {
 		scanf(" %s",s.email);
 		printf("Enter Period(\'x\'days):\n");
 		scanf("%s",&s.period);
+		printf("Enter the number of persons for the stay in the hotel: \n");
+		scanf("%d",&s.countofpersons);
 		printf("Enter Arrival date(dd\\mm\\yyyy):\n");
 		scanf("%s",&s.arrivaldate);
+		printf("\n")
 		printf("Choose the Room that you want:\n");
 		printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
 		printf("\t\t\t\t ********************************************\n");
@@ -233,8 +239,19 @@ void Restaurant() {
 
 }
 
-void Payment() {
-
+void Payment(float *pay) {
+	int c,c1,c2;
+    printf("Please select your payment method: 1.net banking, 2.debit card");
+	scanf("%d",&c);
+	if(c=1)
+	{
+		printf("Select the bank type to proceed the transaction: 1.SBI, 2.ICICI");
+		scanf("%d",&c1);
+		printf("Please enter your login details");
+		scanf("%d",&c2);
+		printf("Please enter the OTP which has sent to your mobile");
+		
+	}
 }
 
 void Record() {
