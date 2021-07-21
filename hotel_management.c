@@ -143,7 +143,7 @@ void Booking() {
 	while(1)
 	{
 		system("cls");
-		printf("\n Enter Customer Details:");
+		printf("\t\t\t Enter Customer Details:");
 		printf("\n**********\n");
 		printf("Enter Name:\n");
 		scanf("%s",s.name);
@@ -159,6 +159,30 @@ void Booking() {
 		scanf("%s",&s.period);
 		printf("Enter Arrival date(dd\\mm\\yyyy):\n");
 		scanf("%s",&s.arrivaldate);
+		printf("Choose the Room that you want:\n");
+		printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
+		printf("\t\t\t\t ********************************************\n");
+		printf("\t\t\t\t  Suite-room       \t   2 \t   $400/day\n");
+		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
+		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
+		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
+		
+		printf("Enter the room that you want:\t");
+		scanf("%s",s.roomnumber);
+		printf("\t\t\t Facilities\n");
+		printf("Enter 'Y' if you want particular facility, if not press any key.\n");
+		printf("Swimming pool:\t");
+		scanf("%c",&s.R.swimming_pool);
+		printf("pets:\t");
+		scanf("%c",&s.R.pets);
+		printf("Gym:\t");
+		scanf("%c",&s.R.gym);
+		printf("Hospitality:\t");
+		scanf("%c",&s.R.hospitality);
+		printf("Spa:\t");
+		scanf("%c",&s.R.spa);
+		printf("Indoor Games:");
+		scanf("%c",&s.R.indoor_games);
 		fwrite(&s,sizeof(s),1,f);
 		fflush(stdin);
 		printf("\n\n1 Room is successfully booked!!");
