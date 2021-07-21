@@ -45,7 +45,7 @@ void homepage()
 			printf("-");
 		choice = getche();
 		choice = toupper(choice);
-		switch(choice)           // SWITCH STATEMENT
+		switch(choice)           // SWITCH STATEMENT user
 		{	
 			case '1':
 				Booking();break;
