@@ -175,9 +175,6 @@ void Booking(float *pay) {
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
 		r = fopen("rooms.txt","a+");
-		while ((room = getchar()) != EOF) {
-            putc(room, r);
-        }
 		printf("Enter the room that you want:\t");
 		scanf("%s",s.roomnumber);
 		printf("\t\t\t Facilities\n");
