@@ -14,8 +14,8 @@ void Record();
 
 void homepage()
 {
-	float *payment;
-	*payment = 0;
+	float money=0;
+	float *payment = &money;
 	while (1)
 	{
 		int i = 0;
@@ -90,6 +90,7 @@ struct CustomerDetails
 	char period[10];
 	char arrivaldate[10];
 	int countofrooms;
+	int countofpersons;
 	struct Room_Service R;
 } s;
 
@@ -132,8 +133,9 @@ void Date() {
 	printf("-");
 }
 
-void Booking(int *pay) {
-    FILE *f;
+void Booking(float *pay) {
+    FILE *f, *r;
+	int room;
 	char test;
 	f=fopen("add.txt","a+");
 	if(f==0)
@@ -164,7 +166,7 @@ void Booking(int *pay) {
 		scanf("%d",&s.countofpersons);
 		printf("Enter Arrival date(dd\\mm\\yyyy):\n");
 		scanf("%s",&s.arrivaldate);
-		printf("\n")
+		printf("\n");
 		printf("Choose the Room that you want:\n");
 		printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
 		printf("\t\t\t\t ********************************************\n");
@@ -172,7 +174,10 @@ void Booking(int *pay) {
 		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
-		
+		r = fopen("rooms.txt","a+");
+		while ((room = getchar()) != EOF) {
+            putc(room, r);
+        }
 		printf("Enter the room that you want:\t");
 		scanf("%s",s.roomnumber);
 		printf("\t\t\t Facilities\n");
