@@ -4,7 +4,12 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
+#define BUFFER_SIZE 1000
+
+/* Function declarations */
+int indexOf(FILE *fptr, const char *word, int *line);
 void Date();
 void Booking(float *pay);
 void Room_Info();
@@ -174,23 +179,60 @@ void Booking(float *pay) {
 		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
-		r = fopen("rooms.txt","a+");
+		//opening file of rooms
+		FILE *fptr;
+    char path[100];
+
+    char word[50];
+
+    int line;
+
+
+    /* Input word to search in file */
+    printf("Enter the Room to be searched: \n");
+    scanf("%s", word);
+
+
+    /* Try to open file */
+    fptr = fopen("rooms.txt", "r");
+
+    /* Exit if file not opened successfully */
+    if (fptr == NULL)
+    {
+        printf("Unable to open file.\n");
+        printf("Please check you have read/write previleges.\n");
+
+        exit(EXIT_FAILURE);
+    }
+
+
+    // Find index of word in fptr
+    indexOf(fptr, word, &line);
+
+    if (line != -1)
+        printf("'%s' room is Available\n", word);
+    else
+        printf("'%s' room not Available\n", word);
+    
+
+    // Close file
+    fclose(fptr);
 		printf("Enter the room that you want:\t");
 		scanf("%s",s.roomnumber);
 		printf("\t\t\t Facilities\n");
 		printf("Enter 'Y' if you want particular facility, if not press any key.\n");
 		printf("Swimming pool:\t");
-		scanf("%c",&s.R.swimming_pool);
+		scanf(" %c",&s.R.swimming_pool);
 		printf("pets:\t");
-		scanf("%c",&s.R.pets);
+		scanf(" %c",&s.R.pets);
 		printf("Gym:\t");
-		scanf("%c",&s.R.gym);
+		scanf(" %c",&s.R.gym);
 		printf("Hospitality:\t");
-		scanf("%c",&s.R.hospitality);
+		scanf(" %c",&s.R.hospitality);
 		printf("Spa:\t");
-		scanf("%c",&s.R.spa);
+		scanf(" %c",&s.R.spa);
 		printf("Indoor Games:");
-		scanf("%c",&s.R.indoor_games);
+		scanf(" %c",&s.R.indoor_games);
 		fwrite(&s,sizeof(s),1,f);
 		fflush(stdin);
 		printf("\n\n1 Room is successfully booked!!");
@@ -258,4 +300,30 @@ void Payment(float *pay) {
 
 void Record() {
 
+}
+
+int indexOf(FILE *fptr, const char *word, int *line)
+{
+    char str[BUFFER_SIZE];
+    char *pos;
+
+    *line = -1;
+
+    while ((fgets(str, BUFFER_SIZE, fptr)) != NULL)
+    {
+
+        // Find first occurrence of word in str
+        pos = strstr(str, word);
+
+        if (pos != NULL)
+        {
+            // First index of word in str is 
+            // Memory address of pos - memory
+            // address of str.
+            *line += 1;
+            break;
+        }
+    }
+
+    return 0;
 }
