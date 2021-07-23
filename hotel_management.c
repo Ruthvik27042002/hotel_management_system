@@ -16,6 +16,7 @@ void Room_Info();
 void Restaurant();
 void Payment();
 void Record();
+void randomPasswordGeneration(int N);
 
 void homepage()
 {
