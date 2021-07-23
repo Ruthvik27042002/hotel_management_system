@@ -20,7 +20,7 @@ void Record();
 void homepage()
 {
 	float *payment;
-	payment = (float*) malloc(sizeof(float));
+	payment = (float *)malloc(sizeof(float));
 	while (1)
 	{
 		int i = 0;
@@ -100,6 +100,20 @@ struct CustomerDetails
 	int countofpersons;
 	struct Room_Service R;
 } s;
+
+struct Payment
+{
+	int room;
+	short int swimmingpool;
+	short int pets;
+	short int gym;
+	short int hospitality;
+	short int spa;
+	short int indoor_games;
+	int veg;
+	int non_veg;
+	int total;
+} cash;
 
 int main()
 {
@@ -184,6 +198,13 @@ void Booking(float *pay)
 		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
+		printf("\n");
+		printf("\t\t\t\t  Room-numbers                              Types-of-Rooms \n");
+		printf("\t\t\t\t ************************************************************\n");
+		printf("\t\t\t\t   101, 201                                 Suite Rooms\n");
+		printf("\t\t\t\t   102, 202, 302                            Deluxe Rooms\n");
+		printf("\t\t\t\t   103, 203, 303, 403, 405                  Semi-Deluxe Rooms\n");
+		printf("\t\t\t\t   104, 204, 301, 304, 305, 401, 402, 404   Normal Rooms\n");
 		//opening file of rooms
 		FILE *fptr;
 		char path[100];
@@ -191,8 +212,8 @@ void Booking(float *pay)
 		char word[50];
 
 		int line;
-		
-		SearchRoom:
+
+	SearchRoom:
 		/* Input word to search in file */
 		printf("Enter the Room to be searched: \n");
 		scanf("%s", word);
@@ -212,11 +233,13 @@ void Booking(float *pay)
 		// Find index of word in fptr
 		indexOf(fptr, word, &line);
 
-		if (line != -1) {
+		if (line != -1)
+		{
 			printf("'%s' room is Available\n", word);
-			strcpy(s.roomnumber,word);
+			strcpy(s.roomnumber, word);
 		}
-		else {
+		else
+		{
 			printf("'%s' room is not Available\n", word);
 			goto SearchRoom;
 		}
@@ -315,18 +338,38 @@ int indexOf(FILE *fptr, const char *word, int *line)
 	while ((fgets(str, BUFFER_SIZE, fptr)) != NULL)
 	{
 
-		// Find first occurrence of word in str
+		// compare the room number in the file.
 		pos = strstr(str, word);
 
 		if (pos != NULL)
 		{
-			// First index of word in str is
-			// Memory address of pos - memory
-			// address of str.
 			*line += 1;
 			break;
 		}
 	}
 
 	return 0;
+}
+
+//Generating the random OTP
+void randomPasswordGeneration(int N)
+{
+
+	// Seed the random-number generator
+	// with current time so that the
+	// numbers will be different every time
+	srand((unsigned int)(time(NULL)));
+
+	// Array of numbers
+	char numbers[] = "0123456789";
+
+	// Stores the random password
+	char password[N];
+
+	// Iterate over the range [0, N]
+	for (int i = 0; i < N; i++)
+	{
+		password[i] = numbers[rand() % 10];
+		printf("%c", password[i]);
+	}
 }
