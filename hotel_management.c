@@ -13,7 +13,7 @@ int indexOf(FILE *fptr, const char *word, int *line);
 void Date();
 void Booking(float *pay);
 void Room_Info();
-void Restaurant();
+void Restaurant(struct CustomerDetails *s);
 void Payment();
 void Record();
 void randomPasswordGeneration(int N);
@@ -97,8 +97,9 @@ struct CustomerDetails
 	char email[20];
 	char period[10];
 	char arrivaldate[10];
-	int countofrooms;
 	int countofpersons;
+	int veg;
+	int non_veg;
 	struct Room_Service R;
 } s;
 
@@ -246,20 +247,60 @@ void Booking(float *pay)
 		}
 		// Close file
 		fclose(fptr);
+		if(s.roomnumber == 101 || s.roomnumber == 201)
+		{
+			cash.room=400;
+		}else if(s.roomnumber == 102 || s.roomnumber == 202 || s.roomnumber == 302){
+			cash.room=320;
+		}else if(s.roomnumber == 103 || s.roomnumber == 203 || s.roomnumber == 303 || s.roomnumber == 403 || s.roomnumber == 405){
+			cash.room=260;
+		}else if(s.roomnumber == 104 || s.roomnumber == 204 || s.roomnumber == 301 || s.roomnumber == 304 || s.roomnumber == 305 || s.roomnumber == 401 || s.roomnumber == 402 || s.roomnumber == 404){
+			cash.room=100;
+		}
 		printf("\t\t\t Facilities\n");
-		printf("Enter 'Y' if you want particular facility, if not press any key.\n");
+		printf("Enter 'Y' if you want a particular facility, if not press any key.\n");
 		printf("Swimming pool:\t");
 		scanf(" %c", &s.R.swimming_pool);
+		if(s.R.swimming_pool=='Y' || s.R.swimming_pool=='y'){
+			cash.swimmingpool=10;
+		}else{
+			cash.swimmingpool=0;
+		}
 		printf("pets:\t");
 		scanf(" %c", &s.R.pets);
+		if(s.R.pets=='Y' || s.R.pets=='y'){
+			cash.pets=2;
+		}else{
+			cash.pets=0;
+		}
 		printf("Gym:\t");
 		scanf(" %c", &s.R.gym);
+		if(s.R.gym=='Y' || s.R.gym=='y'){
+			cash.gym=2;
+		}else{
+			cash.gym=0;
+		}
 		printf("Hospitality:\t");
 		scanf(" %c", &s.R.hospitality);
+		if(s.R.hospitality=='Y' || s.R.hospitality=='y'){
+			cash.hospitality=2;
+		}else{
+			cash.hospitality=0;
+		}
 		printf("Spa:\t");
 		scanf(" %c", &s.R.spa);
+		if(s.R.spa=='Y' || s.R.spa=='y'){
+			cash.spa=8;
+		}else{
+			cash.spa=0;
+		}
 		printf("Indoor Games:");
 		scanf(" %c", &s.R.indoor_games);
+		if(s.R.indoor_games=='Y' || s.R.indoor_games=='y'){
+			cash.indoor_games=2;
+		}else{
+			cash.indoor_games=0;
+		}
 		fwrite(&s, sizeof(s), 1, f);
 		fflush(stdin);
 		printf("\n\n1 Room is successfully booked!!");
@@ -306,23 +347,106 @@ void Room_Info()
 	}
 }
 
-void Restaurant()
+void Restaurant(struct CustomerDetails *s)
 {
+	int food_type;
+	s->veg=0;
+	s->non_veg=0;
+	printf("\t\t\t Restaurant\n");
+	printf("Enter the number '1' if the person wants to eat veg food.\n");
+	printf("Enter the number '2' if the person wants to eat non-veg food.\n");
+	printf("Enter the number '3' if the person is not interested in any type of food to eat.\n");
+	for(int i=0;i<s->countofpersons;i++)
+	{
+	food:
+		printf("Enter the type of food for person %d: \t",i+1);
+		scanf("%d",&food_type);
+		switch(food_type)
+		{
+		case 1:
+			s->veg++;
+			break;
+		case 2:
+            s->non_veg++;
+			break;
+		case 3:
+		    break;
+		default:
+		    printf("Please enter the correct numbers shown above.\n");
+			goto food;
+		}
+	}
+	cash.veg=((*s).veg)*10;
+	cash.non_veg=((*s).non_veg)*15;
 }
 
 void Payment(float *pay)
 {
+	start:
 	int c, c1, c2;
-	printf("Please select your payment method: 1.net banking, 2.debit card");
+	int turn=0;
+	char cvv[5];
+	char password[5],inputOTP[5];
+	cash.total=cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg;
+    printf("Your total payment till now is: %d",cash.total);
+	printf("Please select your payment method: 1.net banking, 2.debit card\n");
 	scanf("%d", &c);
 	if (c = 1)
 	{
-		printf("Select the bank type to proceed the transaction: 1.SBI, 2.ICICI");
+		printf("Select the bank type to proceed the transaction: 1.SBI, 2.ICICI\n");
 		scanf("%d", &c1);
-		printf("Please enter your login details");
+		printf("Please enter your login details.\n");
 		scanf("%d", &c2);
-		printf("Please enter the OTP which has sent to your mobile");
+		logDetails:
+		printf("Please enter the OTP which has sent to your mobile.\n");
+		password=randomPasswordGeneration(5);
+		scanf("%c",inputOTP);
+		if(turn>3){
+			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
+			goto start;
+		}
+		if(strcmp(password,inputOTP) == 0)
+		{
+			printf("Your payment is successfull.\n");
+			break;
+		}else{
+			turn++;
+			goto logDetails;
+		}
+	}else if(c = 2){
+		printf("Enter the card number: \n");
+		scanf("%d",&card_no);
+		printf("Enter the card name: \n");
+		scanf("%c",&card_name);
+		printf("Please enter the expiry month and year of card respectively: \n");
+		scanf("%d %d",&mon,&yr);
+		printf("Please enter the CVV pin: \n");
+		while(i<5)
+	{
+	    cvv[i]=getch();
+	    c=cvv[i];
+	    if(c==13) break;
+	    else printf("*");
+	    i++;
 	}
+	cvv[i]='\0';
+	}
+	card:
+		printf("Please enter the OTP which has sent to your mobile.\n");
+		password=randomPasswordGeneration(5);
+		scanf("%c",inputOTP);
+		if(turn>3){
+			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
+			goto start;
+		}
+		if(strcmp(password,inputOTP) == 0)
+		{
+			printf("Your payment is successfull.\n");
+			break;
+		}else{
+			turn++;
+			goto card;
+		}
 }
 
 void Record()
@@ -393,7 +517,7 @@ int indexOf(FILE *fptr, const char *word, int *line)
 }
 
 //Generating the random OTP
-void randomPasswordGeneration(int N)
+char randomPasswordGeneration(int N)
 {
 
 	// Seed the random-number generator
@@ -413,4 +537,5 @@ void randomPasswordGeneration(int N)
 		password[i] = numbers[rand() % 10];
 		printf("%c", password[i]);
 	}
+	return password;
 }
