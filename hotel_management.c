@@ -327,6 +327,46 @@ void Payment(float *pay)
 
 void Record()
 {
+	FILE *f;
+	char test;
+	char roomnumber[20];
+	while (1)
+	{
+	int flag=1;
+	system("cls");
+	f=fopen("add.txt","r+");
+	if(f==0)
+		exit(0);
+	fflush(stdin);
+	printf("Enter Room number of the customer: \n");
+	scanf("%s", roomnumber);
+	while(fread(&s,sizeof(s),1,f)==1)
+	{
+		if(strcmp(s.roomnumber,roomnumber)==0){
+			flag=0;
+			printf("\n\tRecord Found\n ");
+			printf("\nRoom Number:\t%s",s.roomnumber);
+			printf("\nName:\t%s",s.name);
+			printf("\nAddress:\t%s",s.address);
+			printf("\nPhone number:\t%s",s.phonenumber);
+			printf("\nNationality:\t%s",s.nationality);
+			printf("\nEmail:\t%s",s.email);
+			printf("\nPeriod:\t%s",s.period);
+			printf("\nArrival date:\t%s",s.arrivaldate);
+			break;
+		}
+	}
+	if(flag==1){	
+		printf("\n\tRequested Customer could not be found!\n");
+	}
+
+	printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
+	test = getche();
+	fclose(f);
+	system("cls");
+	if (test == 27)
+			break;
+	}
 }
 
 int indexOf(FILE *fptr, const char *word, int *line)
