@@ -63,7 +63,7 @@ void homepage()
 		case '4':
 			system("cls");
 			printf("\n\n\t **THANK YOU**");
-			printf("\n\t FOR TRUSTING OUR SERVICE");
+			printf("\n\t FOR TRUSTING OUR SERVICE\n");
 			exit(0);
 			break;
 		default:
@@ -104,12 +104,12 @@ struct CustomerDetails
 struct Payment
 {
 	int room;
-	short int swimmingpool;
-	short int pets;
-	short int gym;
-	short int hospitality;
-	short int spa;
-	short int indoor_games;
+	int swimmingpool;
+	int pets;
+	int gym;
+	int hospitality;
+	int spa;
+	int indoor_games;
 	int veg;
 	int non_veg;
 	int total;
@@ -177,7 +177,7 @@ void Booking()
 		printf("\t\t\t Enter Customer Details:");
 		printf("\n**********\n");
 		printf("Enter Name:\n");
-		scanf("%s", s.name);
+		gets(s.name);
 		printf("Enter Address:\n");
 		scanf("%s", s.address);
 		printf("Enter Phone Number:\n");
@@ -261,14 +261,14 @@ void Booking()
 		}
 		// Close file
 		fclose(fptr);
-		if(s.roomnumber == "101" || s.roomnumber == "201")
+		if(strcmp(s.roomnumber,"101")==0 || strcmp(s.roomnumber,"201")==0)
 		{
 			cash.room=400;
-		}else if(s.roomnumber == "102" || s.roomnumber == "202" || s.roomnumber == "302"){
+		}else if((s.roomnumber,"102")==0 || (s.roomnumber,"202")==0 || (s.roomnumber,"302")==0){
 			cash.room=320;
-		}else if(s.roomnumber == "103" || s.roomnumber == "203" || s.roomnumber == "303" || s.roomnumber == "403" || s.roomnumber == "405"){
+		}else if((s.roomnumber,"103")==0 || (s.roomnumber,"203")==0 || (s.roomnumber,"303")==0 || (s.roomnumber,"403")==0 || (s.roomnumber,"405")==0){
 			cash.room=260;
-		}else if(s.roomnumber == "104" || s.roomnumber == "204" || s.roomnumber == "301" || s.roomnumber == "304" || s.roomnumber == "305" || s.roomnumber == "401" || s.roomnumber == "402" || s.roomnumber == "404"){
+		}else if((s.roomnumber,"104")==0 || (s.roomnumber,"204")==0 || (s.roomnumber,"301")==0 || (s.roomnumber,"304")==0 || (s.roomnumber,"305")==0 || (s.roomnumber,"401")==0 || (s.roomnumber,"402")==0 || (s.roomnumber,"404")==0){
 			cash.room=100;
 		}
 		printf("\t\t\t Facilities\n");
@@ -427,7 +427,7 @@ void Payment()
 		logDetails:
 		printf("Please enter the OTP which has sent to your mobile.\n");
 		randomPasswordGeneration();
-		scanf("%c",inputOTP);
+		scanf("%s",inputOTP);
 		if(turn>3){
 			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
 			goto start;
@@ -439,7 +439,7 @@ void Payment()
 			turn++;
 			goto logDetails;
 		}
-	}else if(c = 2){
+	} else if(c = 2){
 		printf("Enter the card number: \n");
 		scanf("%d",&card_no);
 		printf("Enter the card name: \n");
@@ -457,11 +457,11 @@ void Payment()
 	    i++;
 	}
 	cvv[i]='\0';
-	}
+	
 	card:
 		printf("Please enter the OTP which has sent to your mobile.\n");
 		randomPasswordGeneration();
-		scanf("%c",inputOTP);
+		scanf("%s",inputOTP);
 		if(turn>3){
 			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
 			goto start;
@@ -473,6 +473,7 @@ void Payment()
 			turn++;
 			goto card;
 		}
+	}
 }
 
 void Record()
@@ -562,4 +563,5 @@ void randomPasswordGeneration()
 		password[i] = numbers[rand() % 10];
 		printf("%c", password[i]);
 	}
+	printf("\n");
 }
