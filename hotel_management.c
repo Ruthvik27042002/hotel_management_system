@@ -189,6 +189,7 @@ void Booking()
 		printf("Enter Period(\'x\'days):\n");
 		scanf("%s", &s.period);
 		person:
+		printf("Enter less than 5 persons \n");
 		printf("Enter the number of persons for the stay in the hotel: \n");
 		scanf("%d", &s.countofpersons);
 		if (s.countofpersons > 4)
@@ -239,11 +240,19 @@ void Booking()
 
 		// Find index of word in fptr
 		indexOf(fptr, word, &line);
+		
 
 		if (line != -1)
 		{
+			indexOf(f, word, &line);
+			if (line == -1) {
 			printf("'%s' room is Available\n", word);
 			strcpy(s.roomnumber, word);
+			} else
+		{
+			printf("'%s' room is not Available\n", word);
+			goto SearchRoom;
+		}
 		}
 		else
 		{
@@ -359,6 +368,7 @@ void Restaurant()
 	int food_type;
 	s.veg=0;
 	s.non_veg=0;
+	char test;
 	printf("\t\t\t Restaurant\n");
 	printf("Enter the number '1' if the person wants to eat veg food.\n");
 	printf("Enter the number '2' if the person wants to eat non-veg food.\n");
@@ -385,6 +395,10 @@ void Restaurant()
 	}
 	cash.veg=(s.veg)*10;
 	cash.non_veg=(s.non_veg)*15;
+		printf("\n Press esc key to payment, any other key for exit\n");
+		test = getche();
+		if (test == 27)
+	Payment();
 }
 
 void Payment()
@@ -401,7 +415,7 @@ void Payment()
 	char inputOTP[5];
 	start:
 	cash.total=cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg;
-    printf("Your total payment till now is: %d",cash.total);
+    printf("Your total payment till now is: %d \n",cash.total);
 	printf("Please select your payment method: 1.net banking, 2.debit card\n");
 	scanf("%d", &c);
 	if (c = 1)
@@ -482,7 +496,7 @@ void Record()
 			flag=0;
 			printf("\n\tRecord Found\n ");
 			printf("\nRoom Number:\t%s",s.roomnumber);
-			printf("\nName:\t%s",s.name);
+			printf("\nName:\t %s",s.name);
 			printf("\nAddress:\t%s",s.address);
 			printf("\nPhone number:\t%s",s.phonenumber);
 			printf("\nNationality:\t%s",s.nationality);
