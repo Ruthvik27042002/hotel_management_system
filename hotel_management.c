@@ -13,7 +13,7 @@ int indexOf(FILE *fptr, const char *word, int *line);
 void Date();
 void Booking(float *pay);
 void Room_Info();
-void Restaurant(struct CustomerDetails *s);
+void Restaurant(struct CustomerDetails **s);
 void Payment();
 void Record();
 void randomPasswordGeneration(int N);
@@ -89,7 +89,7 @@ struct Room_Service
 
 struct CustomerDetails
 {
-	char roomnumber[10];
+	char roomnumber[3];
 	char name[20];
 	char address[25];
 	char phonenumber[15];
@@ -211,7 +211,7 @@ void Booking(float *pay)
 		FILE *fptr;
 		char path[100];
 
-		char word[50];
+		char word[3];
 
 		int line;
 
@@ -247,14 +247,14 @@ void Booking(float *pay)
 		}
 		// Close file
 		fclose(fptr);
-		if(s.roomnumber == 101 || s.roomnumber == 201)
+		if(s.roomnumber == "101" || s.roomnumber == "201")
 		{
 			cash.room=400;
-		}else if(s.roomnumber == 102 || s.roomnumber == 202 || s.roomnumber == 302){
+		}else if(s.roomnumber == "102" || s.roomnumber == "202" || s.roomnumber == "302"){
 			cash.room=320;
-		}else if(s.roomnumber == 103 || s.roomnumber == 203 || s.roomnumber == 303 || s.roomnumber == 403 || s.roomnumber == 405){
+		}else if(s.roomnumber == "103" || s.roomnumber == "203" || s.roomnumber == "303" || s.roomnumber == "403" || s.roomnumber == "405"){
 			cash.room=260;
-		}else if(s.roomnumber == 104 || s.roomnumber == 204 || s.roomnumber == 301 || s.roomnumber == 304 || s.roomnumber == 305 || s.roomnumber == 401 || s.roomnumber == 402 || s.roomnumber == 404){
+		}else if(s.roomnumber == "104" || s.roomnumber == "204" || s.roomnumber == "301" || s.roomnumber == "304" || s.roomnumber == "305" || s.roomnumber == "401" || s.roomnumber == "402" || s.roomnumber == "404"){
 			cash.room=100;
 		}
 		printf("\t\t\t Facilities\n");
@@ -301,6 +301,7 @@ void Booking(float *pay)
 		}else{
 			cash.indoor_games=0;
 		}
+        Restaurant(&s);
 		fwrite(&s, sizeof(s), 1, f);
 		fflush(stdin);
 		printf("\n\n1 Room is successfully booked!!");
@@ -347,7 +348,7 @@ void Room_Info()
 	}
 }
 
-void Restaurant(struct CustomerDetails *s)
+void Restaurant(struct CustomerDetails **s)
 {
 	int food_type;
 	s->veg=0;
