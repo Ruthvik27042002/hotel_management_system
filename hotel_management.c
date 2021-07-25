@@ -11,17 +11,15 @@
 /* Function declarations */
 int indexOf(FILE *fptr, const char *word, int *line);
 void Date();
-void Booking(float *pay);
+void Booking();
 void Room_Info();
-void Restaurant(struct CustomerDetails **s);
 void Payment();
 void Record();
-void randomPasswordGeneration(int N);
+void randomPasswordGeneration();
+char password[5];
 
 void homepage()
 {
-	float *payment;
-	payment = (float *)malloc(sizeof(float));
 	while (1)
 	{
 		int i = 0;
@@ -57,7 +55,7 @@ void homepage()
 			Room_Info();
 			break;
 		case '2':
-			Booking(payment);
+			Booking();
 			break;
 		case '3':
 			Record();
@@ -117,6 +115,8 @@ struct Payment
 	int total;
 } cash;
 
+void Restaurant();
+
 int main()
 {
 	int i = 0;
@@ -157,7 +157,7 @@ void Date()
 		printf("-");
 }
 
-void Booking(float *pay)
+void Booking()
 {
 	FILE *f, *r;
 	int room;
@@ -301,7 +301,7 @@ void Booking(float *pay)
 		}else{
 			cash.indoor_games=0;
 		}
-        Restaurant(&s);
+        Restaurant();
 		fwrite(&s, sizeof(s), 1, f);
 		fflush(stdin);
 		printf("\n\n1 Room is successfully booked!!");
@@ -348,16 +348,17 @@ void Room_Info()
 	}
 }
 
-void Restaurant(struct CustomerDetails **s)
+void Restaurant()
 {
+	// struct CustomerDetails *s = malloc(sizeof(struct CustomerDetails));
 	int food_type;
-	s->veg=0;
-	s->non_veg=0;
+	s.veg=0;
+	s.non_veg=0;
 	printf("\t\t\t Restaurant\n");
 	printf("Enter the number '1' if the person wants to eat veg food.\n");
 	printf("Enter the number '2' if the person wants to eat non-veg food.\n");
 	printf("Enter the number '3' if the person is not interested in any type of food to eat.\n");
-	for(int i=0;i<s->countofpersons;i++)
+	for(int i=0;i<s.countofpersons;i++)
 	{
 	food:
 		printf("Enter the type of food for person %d: \t",i+1);
@@ -365,10 +366,10 @@ void Restaurant(struct CustomerDetails **s)
 		switch(food_type)
 		{
 		case 1:
-			s->veg++;
+			s.veg++;
 			break;
 		case 2:
-            s->non_veg++;
+            s.non_veg++;
 			break;
 		case 3:
 		    break;
@@ -377,17 +378,23 @@ void Restaurant(struct CustomerDetails **s)
 			goto food;
 		}
 	}
-	cash.veg=((*s).veg)*10;
-	cash.non_veg=((*s).non_veg)*15;
+	cash.veg=(s.veg)*10;
+	cash.non_veg=(s.non_veg)*15;
 }
 
-void Payment(float *pay)
+void Payment()
 {
-	start:
-	int c, c1, c2;
+	int c;
+	int c1;
+	int c2;
+	int mon;
+	int yr;
+	char card_name[10];
+	int card_no;
 	int turn=0;
 	char cvv[5];
-	char password[5],inputOTP[5];
+	char inputOTP[5];
+	start:
 	cash.total=cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg;
     printf("Your total payment till now is: %d",cash.total);
 	printf("Please select your payment method: 1.net banking, 2.debit card\n");
@@ -400,7 +407,7 @@ void Payment(float *pay)
 		scanf("%d", &c2);
 		logDetails:
 		printf("Please enter the OTP which has sent to your mobile.\n");
-		password=randomPasswordGeneration(5);
+		randomPasswordGeneration();
 		scanf("%c",inputOTP);
 		if(turn>3){
 			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
@@ -409,7 +416,6 @@ void Payment(float *pay)
 		if(strcmp(password,inputOTP) == 0)
 		{
 			printf("Your payment is successfull.\n");
-			break;
 		}else{
 			turn++;
 			goto logDetails;
@@ -422,6 +428,7 @@ void Payment(float *pay)
 		printf("Please enter the expiry month and year of card respectively: \n");
 		scanf("%d %d",&mon,&yr);
 		printf("Please enter the CVV pin: \n");
+		int i=0;
 		while(i<5)
 	{
 	    cvv[i]=getch();
@@ -434,7 +441,7 @@ void Payment(float *pay)
 	}
 	card:
 		printf("Please enter the OTP which has sent to your mobile.\n");
-		password=randomPasswordGeneration(5);
+		randomPasswordGeneration();
 		scanf("%c",inputOTP);
 		if(turn>3){
 			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
@@ -443,7 +450,6 @@ void Payment(float *pay)
 		if(strcmp(password,inputOTP) == 0)
 		{
 			printf("Your payment is successfull.\n");
-			break;
 		}else{
 			turn++;
 			goto card;
@@ -518,7 +524,7 @@ int indexOf(FILE *fptr, const char *word, int *line)
 }
 
 //Generating the random OTP
-char randomPasswordGeneration(int N)
+void randomPasswordGeneration()
 {
 
 	// Seed the random-number generator
@@ -530,13 +536,11 @@ char randomPasswordGeneration(int N)
 	char numbers[] = "0123456789";
 
 	// Stores the random password
-	char password[N];
 
 	// Iterate over the range [0, N]
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		password[i] = numbers[rand() % 10];
 		printf("%c", password[i]);
 	}
-	return password;
 }
