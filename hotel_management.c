@@ -27,7 +27,7 @@ void homepage()
 		for (i = 0; i < 80; i++)
 			printf("-");
 		printf("\n");
-		printf("\t\t   **********  |MAIN MENU|  *********** \n");
+		printf("\t\t   ****  |MAIN MENU|  ***** \n");
 		for (i = 0; i < 80; i++)
 			printf("-");
 		printf("\n");
@@ -61,7 +61,7 @@ void homepage()
 			break;
 		case '4':
 			system("cls");
-			printf("\n\n\t **THANK YOU**");
+			printf("\n\n\t *THANK YOU*");
 			printf("\n\t FOR TRUSTING OUR SERVICE\n");
 			exit(0);
 			break;
@@ -92,7 +92,7 @@ struct CustomerDetails
 	char phonenumber[15];
 	char nationality[15];
 	char email[20];
-	char period[10];
+	int period;
 	char arrivaldate[10];
 	int countofpersons;
 	int veg;
@@ -121,7 +121,7 @@ int main()  //	main function
 	int i = 0;
 	char choice;
 	system("cls"); // FOR CLEARING SCREEN
-	printf("\t\t*****************\n");
+	printf("\t\t*******\n");
 	printf("\t\t*                                               *\n");
 	printf("\t\t*       -----------------------------           *\n");
 	printf("\t\t*           WELCOME TO Taj Athulya              *\n");
@@ -134,7 +134,7 @@ int main()  //	main function
 	printf("\t\t*        Telipara,Tajganj, Agra,Uttar Pradesh   *\n");
 	printf("\t\t*               282001, India                   *\n");
 	printf("\t\t*     CONTACT US:18-87454575552,035455852       *\n");
-	printf("\t\t*****************\n\n\n");
+	printf("\t\t*******\n\n\n");
 	Date();
 	printf(" \n Press any key to continue: \n");
 	getch();
@@ -174,7 +174,7 @@ void Booking()
 	{
 		system("cls");
 		printf("\t\t\t Enter Customer Details:");
-		printf("\n**********\n");
+		printf("\n****\n");
 		printf("Enter Name:\n");
 		gets(s.name);
 		printf("Enter Address:\n");
@@ -186,7 +186,7 @@ void Booking()
 		printf("Enter Email:\n");
 		scanf(" %s", s.email);
 		printf("Enter Period(\'x\'days):\n");
-		scanf("%s", &s.period);
+		scanf("%d",&s.period);
 		person:
 		printf("Enter less than 5 persons \n");
 		printf("Enter the number of persons for the stay in the hotel: \n");
@@ -196,25 +196,24 @@ void Booking()
 			goto person;
 		}
 		printf("Enter Arrival date(dd\\mm\\yyyy):\n");
-		scanf("%s", &s.arrivaldate);
+		scanf("%s",s.arrivaldate);
 		printf("\n");
 		printf("Choose the Room that you want:\n");
 		printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
-		printf("\t\t\t\t ********************************************\n");
+		printf("\t\t\t\t ****************\n");
 		printf("\t\t\t\t  Suite-room       \t   2 \t   $400/day\n");
 		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
 		printf("\n");
 		printf("\t\t\t\t  Room-numbers                              Types-of-Rooms \n");
-		printf("\t\t\t\t ************************************************************\n");
+		printf("\t\t\t\t ********************\n");
 		printf("\t\t\t\t   101, 201                                 Suite Rooms\n");
 		printf("\t\t\t\t   102, 202, 302                            Deluxe Rooms\n");
 		printf("\t\t\t\t   103, 203, 303, 403, 405                  Semi-Deluxe Rooms\n");
 		printf("\t\t\t\t   104, 204, 301, 304, 305, 401, 402, 404   Normal Rooms\n");
 		//opening file of rooms
 		FILE *fptr;
-		char path[100];
 
 		char word[3];
 
@@ -234,7 +233,7 @@ void Booking()
 			printf("Unable to open file.\n");
 			printf("Please check you have read/write previleges.\n");
 
-			exit(EXIT_FAILURE);
+			exit(1);
 		}
 
 		// Find index of word in fptr
@@ -335,14 +334,14 @@ void Room_Info()
 		printf("\n\n\n\n\n");
 		printf("\t\t\t\t\t\t Room-Information \n\n");
 		printf("\t\t\t\t  Types-of-Rooms     No.of Rooms   Cost/day \n");
-		printf("\t\t\t\t ********************************************\n");
+		printf("\t\t\t\t ****************\n");
 		printf("\t\t\t\t  Suite-room       \t   2 \t   $400/day\n");
 		printf("\t\t\t\t  Deluxe-Rooms     \t   3 \t   $320/day\n");
 		printf("\t\t\t\t  Semi-Deluxe-room \t   5 \t   $260/day\n");
 		printf("\t\t\t\t  Normal-Room      \t   8 \t   $100/day\n\n\n\n");
 		printf("\t\t\t\t\t     Room-Facilities \n\n");
 		printf("\t\t\t\t\t Facilities    \t   Cost/day \n");
-		printf("\t\t\t\t\t*****************************\n");
+		printf("\t\t\t\t\t***********\n");
 		printf("\t\t\t\t\t Swimming-pool \t   $10/day\n");
 		printf("\t\t\t\t\t pet           \t   $2/day\n");
 		printf("\t\t\t\t\t gym           \t   $2/day\n");
@@ -351,7 +350,7 @@ void Room_Info()
 		printf("\t\t\t\t\t indoor-games  \t   $2/day \n\n\n\n");
 		printf("\t\t\t\t\t   Restaurant-Information \n\n");
 		printf("\t\t\t\t\t Type          \t   Cost/day \n");
-		printf("\t\t\t\t\t*****************************\n");
+		printf("\t\t\t\t\t***********\n");
 		printf("\t\t\t\t\t veg-food      \t   $10/day \n");
 		printf("\t\t\t\t\t nonveg-food   \t   $15/day\n\n");
 		printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
@@ -363,7 +362,6 @@ void Room_Info()
 
 void Restaurant()
 {
-	// struct CustomerDetails *s = malloc(sizeof(struct CustomerDetails));
 	int food_type;
 	s.veg=0;
 	s.non_veg=0;
@@ -415,7 +413,7 @@ void Payment()
 	char cvv[5];
 	char inputOTP[5];
 	start:
-	cash.total=cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg;
+	cash.total=(cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg)*(s.period);
     printf("Your total payment till now is: %d \n",cash.total);
 	printf("Please select your payment method: 1.net banking, 2.debit card\n");
 	scanf("%d", &c);
@@ -503,7 +501,7 @@ void Record()
 			printf("\nPhone number:\t%s",s.phonenumber);
 			printf("\nNationality: \t%s",s.nationality);
 			printf("\nEmail:       \t%s",s.email);
-			printf("\nPeriod:      \t%s",s.period);
+			printf("\nPeriod:      \t%d",s.period);
 			printf("\nArrival date:\t%s",s.arrivaldate);
 			break;
 		}
@@ -548,7 +546,7 @@ int indexOf(FILE *fptr, const char *word, int *line)
 void randomPasswordGeneration()
 {
 
-	// Seed the random-number generator
+	// Send the random-number generator
 	// with current time so that the
 	// numbers will be different every time
 	srand((unsigned int)(time(NULL)));
