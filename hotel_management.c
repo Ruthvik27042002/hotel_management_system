@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
 #include <ctype.h>
-// #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
@@ -280,35 +279,35 @@ void Booking()
 		}else{
 			cash.swimmingpool=0;
 		}
-		printf("pets:\t");
+		printf("pets:        \t");
 		scanf(" %c", &s.R.pets);
 		if(s.R.pets=='Y' || s.R.pets=='y'){
 			cash.pets=2;
 		}else{
 			cash.pets=0;
 		}
-		printf("Gym:\t");
+		printf("Gym:         \t");
 		scanf(" %c", &s.R.gym);
 		if(s.R.gym=='Y' || s.R.gym=='y'){
 			cash.gym=2;
 		}else{
 			cash.gym=0;
 		}
-		printf("Hospitality:\t");
+		printf("Hospitality: \t");
 		scanf(" %c", &s.R.hospitality);
 		if(s.R.hospitality=='Y' || s.R.hospitality=='y'){
 			cash.hospitality=2;
 		}else{
 			cash.hospitality=0;
 		}
-		printf("Spa:\t");
+		printf("Spa:         \t");
 		scanf(" %c", &s.R.spa);
 		if(s.R.spa=='Y' || s.R.spa=='y'){
 			cash.spa=8;
 		}else{
 			cash.spa=0;
 		}
-		printf("Indoor Games:");
+		printf("Indoor Games:\t");
 		scanf(" %c", &s.R.indoor_games);
 		if(s.R.indoor_games=='Y' || s.R.indoor_games=='y'){
 			cash.indoor_games=2;
@@ -420,7 +419,7 @@ void Payment()
     printf("Your total payment till now is: %d \n",cash.total);
 	printf("Please select your payment method: 1.net banking, 2.debit card\n");
 	scanf("%d", &c);
-	if (c = 1)
+	if (c == 1)
 	{
 		printf("Select the bank type to proceed the transaction: 1.SBI, 2.ICICI\n");
 		scanf("%d", &c1);
@@ -441,11 +440,11 @@ void Payment()
 			turn++;
 			goto logDetails;
 		}
-	} else if(c = 2){
+	} else if(c == 2){
 		printf("Enter the card number: \n");
 		scanf("%d",&card_no);
 		printf("Enter the card name: \n");
-		scanf("%c",&card_name);
+		scanf("%s",card_name);
 		printf("Please enter the expiry month and year of card respectively: \n");
 		scanf("%d %d",&mon,&yr);
 		printf("Please enter the CVV pin: \n");
@@ -461,7 +460,7 @@ void Payment()
 	cvv[i]='\0';
 	
 	card:
-		printf("Please enter the OTP which has sent to your mobile.\n");
+		printf("\nPlease enter the OTP which has sent to your mobile.\n");
 		randomPasswordGeneration();
 		scanf("%s",inputOTP);
 		if(turn>3){
@@ -498,13 +497,13 @@ void Record()
 		if(strcmp(s.roomnumber,roomnumber)==0){
 			flag=0;
 			printf("\n\tRecord Found\n ");
-			printf("\nRoom Number:\t%s",s.roomnumber);
-			printf("\nName:\t %s",s.name);
-			printf("\nAddress:\t%s",s.address);
+			printf("\nRoom Number: \t%s",s.roomnumber);
+			printf("\nName:        \t %s",s.name);
+			printf("\nAddress:     \t%s",s.address);
 			printf("\nPhone number:\t%s",s.phonenumber);
-			printf("\nNationality:\t%s",s.nationality);
-			printf("\nEmail:\t%s",s.email);
-			printf("\nPeriod:\t%s",s.period);
+			printf("\nNationality: \t%s",s.nationality);
+			printf("\nEmail:       \t%s",s.email);
+			printf("\nPeriod:      \t%s",s.period);
 			printf("\nArrival date:\t%s",s.arrivaldate);
 			break;
 		}
@@ -513,7 +512,7 @@ void Record()
 		printf("\n\tRequested Customer could not be found!\n");
 	}
 
-	printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
+	printf("\n\t Press esc key to exit,  any other key to add another customer detail:\n");
 	test = getche();
 	fclose(f);
 	system("cls");
