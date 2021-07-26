@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <ctype.h>
-#include <windows.h>
+// #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
@@ -20,7 +20,7 @@ char password[5];
 
 void homepage()
 {
-	while (1)
+	while (1) //infinite loop
 	{
 		int i = 0;
 		char choice;
@@ -87,7 +87,7 @@ struct Room_Service
 
 struct CustomerDetails
 {
-	char roomnumber[3];
+	char roomnumber[4];
 	char name[20];
 	char address[25];
 	char phonenumber[15];
@@ -117,7 +117,7 @@ struct Payment
 
 void Restaurant();
 
-int main()
+int main()  //	main function
 {
 	int i = 0;
 	char choice;
@@ -171,7 +171,7 @@ void Booking()
 		printf("\n Process completed press any key to continue!! \n");
 		getch();
 	}
-	while (1)
+	while (1)	//infinite loop
 	{
 		system("cls");
 		printf("\t\t\t Enter Customer Details:");
@@ -264,11 +264,11 @@ void Booking()
 		if(strcmp(s.roomnumber,"101")==0 || strcmp(s.roomnumber,"201")==0)
 		{
 			cash.room=400;
-		}else if((s.roomnumber,"102")==0 || (s.roomnumber,"202")==0 || (s.roomnumber,"302")==0){
+		}else if(strcmp(s.roomnumber,"102")==0 || strcmp(s.roomnumber,"202")==0 || strcmp(s.roomnumber,"302")==0){
 			cash.room=320;
-		}else if((s.roomnumber,"103")==0 || (s.roomnumber,"203")==0 || (s.roomnumber,"303")==0 || (s.roomnumber,"403")==0 || (s.roomnumber,"405")==0){
+		}else if(strcmp(s.roomnumber,"103")==0 || strcmp(s.roomnumber,"203")==0 || strcmp(s.roomnumber,"303")==0 || strcmp(s.roomnumber,"403")==0 || strcmp(s.roomnumber,"405")==0){
 			cash.room=260;
-		}else if((s.roomnumber,"104")==0 || (s.roomnumber,"204")==0 || (s.roomnumber,"301")==0 || (s.roomnumber,"304")==0 || (s.roomnumber,"305")==0 || (s.roomnumber,"401")==0 || (s.roomnumber,"402")==0 || (s.roomnumber,"404")==0){
+		}else if(strcmp(s.roomnumber,"104")==0 || strcmp(s.roomnumber,"204")==0 || strcmp(s.roomnumber,"301")==0 || strcmp(s.roomnumber,"304")==0 || strcmp(s.roomnumber,"305")==0 || strcmp(s.roomnumber,"401")==0 || strcmp(s.roomnumber,"402")==0 || strcmp(s.roomnumber,"404")==0){
 			cash.room=100;
 		}
 		printf("\t\t\t Facilities\n");
@@ -330,7 +330,7 @@ void Booking()
 void Room_Info()
 {
 	char test;
-	while (1)
+	while (1)  //	infinite loop
 	{
 		system("cls");
 		printf("\n\n\n\n\n");
@@ -358,7 +358,7 @@ void Room_Info()
 		printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
 		test = getche();
 		if (test == 27)
-			break;
+			break;	//	infinite loop will break.
 	}
 }
 
@@ -398,7 +398,9 @@ void Restaurant()
 		printf("\n Press esc key to payment, any other key for exit\n");
 		test = getche();
 		if (test == 27)
-	Payment();
+		Payment();
+		else 
+		exit(0);
 }
 
 void Payment()
