@@ -47,7 +47,6 @@ void homepage()
 			printf("-");
 		printf("\n");
 		choice = getche();
-		choice = toupper(choice);
 		switch (choice) // SWITCH STATEMENT WITH CHOICE
 		{
 		case '1':
@@ -158,7 +157,7 @@ void Date()
 
 void Booking()
 {
-	FILE *f, *r;
+	FILE *f;
 	int room;
 	char test;
 	f = fopen("add.txt", "a+");
@@ -353,7 +352,7 @@ void Room_Info()
 		printf("\t\t\t\t\t***********\n");
 		printf("\t\t\t\t\t veg-food      \t   $10/day \n");
 		printf("\t\t\t\t\t nonveg-food   \t   $15/day\n\n");
-		printf("\t Press esc key to exit,  any other key to add another customer detail:\n");
+		printf("\t Press esc key to exit :\n");
 		test = getche();
 		if (test == 27)
 			break;	//	infinite loop will break.
@@ -409,12 +408,13 @@ void Payment()
 	int yr;
 	char card_name[10];
 	int card_no;
-	int turn=0;
+	int turn;
 	char cvv[5];
 	char inputOTP[5];
 	start:
+	turn=0;
 	cash.total=(cash.room+cash.swimmingpool+cash.pets+cash.gym+cash.hospitality+cash.spa+cash.indoor_games+cash.veg+cash.non_veg)*(s.period);
-    printf("Your total payment till now is: %d \n",cash.total);
+    printf("\n Total payment till now is: %d \n",cash.total);
 	printf("Please select your payment method: 1.net banking, 2.debit card\n");
 	scanf("%d", &c);
 	if (c == 1)
@@ -424,13 +424,13 @@ void Payment()
 		printf("Please enter your login details.\n");
 		scanf("%d", &c2);
 		logDetails:
-		printf("Please enter the OTP which has sent to your mobile.\n");
-		randomPasswordGeneration();
-		scanf("%s",inputOTP);
-		if(turn>3){
+		if(turn>4){
 			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
 			goto start;
 		}
+		printf("Please enter the OTP which has sent to your mobile.\n");
+		randomPasswordGeneration();
+		scanf("%s",inputOTP);
 		if(strcmp(password,inputOTP) == 0)
 		{
 			printf("Your payment is successfull.\n");
@@ -458,13 +458,13 @@ void Payment()
 	cvv[i]='\0';
 	
 	card:
+		if(turn>4){
+			printf("Sorry, you have entered the wrong OTP five times. Please try again the process from payment.\n");
+			goto start;
+		}
 		printf("\nPlease enter the OTP which has sent to your mobile.\n");
 		randomPasswordGeneration();
 		scanf("%s",inputOTP);
-		if(turn>3){
-			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
-			goto start;
-		}
 		if(strcmp(password,inputOTP) == 0)
 		{
 			printf("Your payment is successfull.\n");
@@ -484,7 +484,7 @@ void Record()
 	{
 	int flag=1;
 	system("cls");
-	f=fopen("add.txt","r+");
+	f=fopen("add.txt","r");
 	if(f==0)
 		exit(0);
 	fflush(stdin);
@@ -510,7 +510,7 @@ void Record()
 		printf("\n\tRequested Customer could not be found!\n");
 	}
 
-	printf("\n\t Press esc key to exit,  any other key to add another customer detail:\n");
+	printf("\n\t Press esc key to exit,  any other key to find another Room detail:\n");
 	test = getche();
 	fclose(f);
 	system("cls");
