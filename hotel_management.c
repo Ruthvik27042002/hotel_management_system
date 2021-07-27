@@ -425,7 +425,7 @@ void Payment()
 		scanf("%d", &c2);
 		logDetails:
 		if(turn>4){
-			printf("Sorry, you have entered the wrong OTP thrice. Please try again the process from payment.\n");
+			printf("Sorry, you have entered the wrong OTP five times. Please try again the process from payment.\n");
 			goto start;
 		}
 		printf("Please enter the OTP which has sent to your mobile.\n");
