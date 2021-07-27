@@ -178,7 +178,7 @@ void Booking()
 		printf("Enter Name:\n");
 		gets(s.name);
 		printf("Enter Address:\n");
-		scanf("%s", s.address);
+		scanf("%[^\n]", s.address);
 		printf("Enter Phone Number:\n");
 		scanf("%s", s.phonenumber);
 		printf("Enter Nationality:\n");
